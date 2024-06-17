@@ -6,7 +6,7 @@
 /*   By: sbenes <sbenes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 13:00:22 by sbenes            #+#    #+#             */
-/*   Updated: 2024/06/16 16:47:37 by sbenes           ###   ########.fr       */
+/*   Updated: 2024/06/17 16:57:59 by sbenes           ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -14,6 +14,8 @@
 #include "include/libasm.h"
 
 extern int  errno;
+void    test_ft_strlen();
+void    test_ft_strcpy();
 
 void    test_ft_strlen()
 {
@@ -36,19 +38,18 @@ void    test_ft_strlen()
     {
         printf("Test case: [%s]\n", test_cases[i]);
         printf("ft_strlen: \t%zu \n", ft_strlen(test_cases[i]));
-        printf("strlen: \t%zu \n\n", strlen(test_cases[i]));
+        printf("strlen: \t%zu \n", strlen(test_cases[i]));
+        if (ft_strlen(test_cases[i]) != strlen(test_cases[i]))
+            printf("Result: " RED "failed\n\n" RESET);
+        else
+            printf("Result: " GREEN "OK" RESET "\n\n");
+        
     }
 }
 
-int main(int argc, char **argv)
+void    test_ft_strcpy()
 {
-
-    char *parameter = argv[1];
-
-    if(!strcmp(parameter, "ft_strlen"))
-        test_ft_strlen();
-
-/*     printf(":::::: ft_strlen ::::::\n\n");
+    printf(":::::: ft_strcpy ::::::\n\n");
     
     char *test_cases[] = {
         "Hello World!",
@@ -65,12 +66,28 @@ int main(int argc, char **argv)
 
     for (int i = 0; i < case_nr; i++)
     {
+        char destination[ft_strlen(test_cases[i])];
         printf("Test case: [%s]\n", test_cases[i]);
-        printf("ft_strlen: \t%zu \n", ft_strlen(test_cases[i]));
-        printf("strlen: \t%zu \n\n", strlen(test_cases[i]));
+        printf("ft_strcpy: \t%s \n", ft_strcpy(destination, test_cases[i]));
+        printf("strcpy: \t%s \n", strcpy(destination, test_cases[i]));
+        if (ft_strlen(test_cases[i]) != strlen(test_cases[i]))
+            printf("Result: " RED "failed\n\n" RESET);
+        else
+            printf("Result: " GREEN "OK" RESET "\n\n");
+        
     }
+}
 
-    printf(":::::: ft_strcpy ::::::\n\n"); */
+int main(int argc, char **argv)
+{
+
+    char *parameter = argv[1];
+
+    if(!strcmp(parameter, "ft_strlen"))
+        test_ft_strlen();
+    else if(!strcmp(parameter, "ft_strcpy"))
+        test_ft_strcpy();
+    
     
     return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: sbenes <sbenes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 12:49:59 by sbenes            #+#    #+#             */
-/*   Updated: 2024/06/16 16:26:56 by sbenes           ###   ########.fr       */
+/*   Updated: 2024/06/17 16:23:29 by sbenes           ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -21,6 +21,13 @@
 # include <fcntl.h>
 # include <sys/types.h>
 # include <sys/stat.h>
+
+# define RED	"\033[31m"
+# define GREEN	"\033[32m"
+# define YELLOW	"\033[33m"
+# define BLUE	"\033[34m"
+# define BOLD	"\033[1m"
+# define RESET	"\033[0m"
 
 size_t      ft_strlen(const char *s);
 char        *ft_strcpy(char *dst, const char *src);

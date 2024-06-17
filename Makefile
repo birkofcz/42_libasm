@@ -6,13 +6,13 @@
 #    By: sbenes <sbenes@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/16 12:26:28 by sbenes            #+#    #+#              #
-#    Updated: 2024/06/16 16:38:46 by sbenes           ###   ########.fr        #
+#    Updated: 2024/06/17 17:00:36 by sbenes           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME        = libasm.a
 SRC_DIR     = src
-SRC_FILES   = ft_strlen.s 
+SRC_FILES   = ft_strlen.s ft_strcpy.s
 OBJ_FILES   = $(SRC_FILES:%.s=$(SRC_DIR)/%.o)
 INCLUDE_DIR = include
 
