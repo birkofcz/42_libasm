@@ -6,7 +6,7 @@
 /*   By: sbenes <sbenes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 13:00:22 by sbenes            #+#    #+#             */
-/*   Updated: 2024/06/18 16:58:51 by sbenes           ###   ########.fr       */
+/*   Updated: 2024/06/20 16:35:56 by sbenes           ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -67,6 +67,17 @@ void    test_ft_strcpy()
     }
 }
 
+void    test_ft_strcmp()
+{
+    char *first = "ahoj";
+    char *second = "aho";
+
+    printf("ft_strcmp: %d\n", ft_strcmp(first, second));
+    printf("strcmp: %d\n", strcmp(first, second));
+    
+
+}
+
 int main(int argc, char **argv)
 {
 
@@ -76,6 +87,8 @@ int main(int argc, char **argv)
         test_ft_strlen();
     else if(!strcmp(parameter, "ft_strcpy"))
         test_ft_strcpy();
+    else if (!strcmp(parameter, "ft_strcmp"))
+        test_ft_strcmp();
     
     
     return 0;
