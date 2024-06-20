@@ -55,4 +55,4 @@ _return:
     movzx rax, bl
     movzx rdx, cl
     sub rax, rdx
-    ret
+    rets
