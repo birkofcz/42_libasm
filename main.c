@@ -6,7 +6,7 @@
 /*   By: sbenes <sbenes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 13:00:22 by sbenes            #+#    #+#             */
-/*   Updated: 2024/07/21 16:01:22 by sbenes           ###   ########.fr       */
+/*   Updated: 2024/07/22 17:07:33 by sbenes           ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -162,23 +162,24 @@ void    test_ft_read()
     int ret;
     char buffer[100];
 
-    printf("\n:::::: ft_read ::::::\n\n");
-    
-/*     for (int i = 0; i < case_nr; i++)
-    {
-        printf("Test case: [%s]\n", test_cases[i]);
-        ret = ft_read(fd, buffer, ft_strlen(test_cases[i]));
-        printf(" ft_read: \t%d \n", ret);
-        ret = read(fd, buffer, ft_strlen(test_cases[i]));
-        printf(" read: \t%d \n", ret);
-        if (ret != ft_read(fd, buffer, ft_strlen(test_cases[i])))
-            printf(" Result: " RED "failed\n\n" RESET);
-        else
-            printf(" Result: " GREEN "OK" RESET "\n\n");
-    } */
+    printf(BOLD "\n:::::: ft_read ::::::\n\n" RESET);
 
+    printf(GREEN "\nfile reading test: test.txt\n" RESET);
+    //Test read with file
+    int file = open("test.txt", O_RDONLY);
+    ret = read(file, buffer, 100);
+    printf("read with file: \t%d \n", ret);
+    printf("buffer: %s\n", buffer);
+    close(file);
+    //Test ft_read with file
+    file = open("test.txt", O_RDONLY);
+    ret = ft_read(file, buffer, 100);
+    printf("ft_read with file: \t%d \n", ret);
+    printf("buffer: %s\n", buffer);
+    close(file);
+    
     // bad input test suite:
-    printf("Bad input test suite:\n");
+    printf(RED "\nBad input test suite:\n\n" RESET);
 
     // Test ft_read with bad fd
     errno = 0; // Reset errno before the call
@@ -192,18 +193,6 @@ void    test_ft_read()
     printf("read with bad fd (-1): \t%d \n", ret);
     printf("errno after read: %d\n", errno);
 
-/*     // Test ft_read with bad buffer
-    errno = 0; // Reset errno before the call
-    ret = ft_read(fd, NULL, ft_strlen(test_cases[0]));
-    printf("\nft_read with bad buffer (NULL): \t%d \n", ret);
-    printf("errno after ft_read: %d\n", errno);
-
-    // Test read with bad buffer
-    errno = 0; // Reset errno before the call
-    ret = read(fd, NULL, ft_strlen(test_cases[0]));
-    printf("read with bad buffer (NULL): \t%d \n", ret);
-    printf("errno after read: %d\n", errno); */
-
     // Test ft_read with bad count
     errno = 0; //
     ret = ft_read(fd, buffer, -1);
@@ -216,23 +205,45 @@ void    test_ft_read()
     printf("read with bad count (-1): \t%d \n", ret);
     printf("errno after read: %d\n", errno); 
 
-    printf("\nfile reading test: test.txt\n");
-    //Test read with file
-    int file = open("test.txt", O_RDONLY);
-    ret = read(file, buffer, 100);
-    printf("read with file: \t%d \n", ret);
+
+    printf(GREEN "\nstdin reading test. Enter some content twice: \n" RESET);
+
+    //Test ft_read with stdin
+    //reset buffer
+    memset(buffer, 0, 100);
+    ret = ft_read(fd, buffer, 100);
+    printf("ft_read with stdin: \t%d \n", ret);
     printf("buffer: %s\n", buffer);
-    close(file);
-    //Test ft_read with file
-    file = open("test.txt", O_RDONLY);
-    ret = ft_read(file, buffer, 100);
-    printf("ft_read with file: \t%d \n", ret);
+
+    //Test read with stdin
+    //reset buffer
+    memset(buffer, 0, 100);
+    ret = read(fd, buffer, 100);
+    printf("read with stdin: \t%d \n", ret);
     printf("buffer: %s\n", buffer);
-    close(file);
+
 }  
+
 
 void    test_ft_strdup()
 {
+    printf(BOLD "\n:::::: ft_strdup ::::::\n\n" RESET);
+    
+    int case_nr = sizeof(test_cases) / sizeof(test_cases[0]);
+
+    for (int i = 0; i < case_nr; i++)
+    {
+        printf(YELLOW "Test case: [%s]\n" RESET, test_cases[i]);
+        char *ret = ft_strdup(test_cases[i]);
+        printf("ft_strdup: \t%s \n", ret);
+        char *ret2 = strdup(test_cases[i]);
+        printf("strdup: \t%s \n", ret2);
+        if (strcmp(ret, ret2))
+            printf("Result: " RED "failed\n\n" RESET);
+        else
+            printf("Result: " GREEN "OK" RESET "\n\n");
+        
+    }
 }
 
 /// ----- MAIN ----- ////
