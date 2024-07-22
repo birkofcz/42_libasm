@@ -6,7 +6,7 @@
 /*   By: sbenes <sbenes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 13:00:22 by sbenes            #+#    #+#             */
-/*   Updated: 2024/07/22 17:07:33 by sbenes           ###   ########.fr       */
+/*   Updated: 2024/07/22 17:12:40 by sbenes           ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -156,6 +156,7 @@ void    test_ft_write()
 }
 
 void    test_ft_read()
+
 { 
     int case_nr = sizeof(test_cases) / sizeof(test_cases[0]);
     int fd = 0;
@@ -164,7 +165,7 @@ void    test_ft_read()
 
     printf(BOLD "\n:::::: ft_read ::::::\n\n" RESET);
 
-    printf(GREEN "\nfile reading test: test.txt\n" RESET);
+    printf(GREEN "\nfile reading test: test.txt\n\n" RESET);
     //Test read with file
     int file = open("test.txt", O_RDONLY);
     ret = read(file, buffer, 100);
@@ -177,6 +178,7 @@ void    test_ft_read()
     printf("ft_read with file: \t%d \n", ret);
     printf("buffer: %s\n", buffer);
     close(file);
+    
     
     // bad input test suite:
     printf(RED "\nBad input test suite:\n\n" RESET);
@@ -222,8 +224,7 @@ void    test_ft_read()
     printf("read with stdin: \t%d \n", ret);
     printf("buffer: %s\n", buffer);
 
-}  
-
+}
 
 void    test_ft_strdup()
 {
