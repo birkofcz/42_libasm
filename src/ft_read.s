@@ -23,17 +23,17 @@ global ft_read
 
 
 ft_read:
-    mov rax, 0          ;1 is syscall for write
-    syscall             ;makes the syscall for write
-    cmp rax, 0          ;is return zero?
-    jl  _error          ;if the rax is lower than 0, it is an error
-    ret                 ;if is 0 or more, returns the rax value
+    mov rax, 0                  ;0 is syscall for read
+    syscall                     ;makes the syscall for read
+    cmp rax, 0                  ;is return zero? (no bytes read)
+    jl  _error                  ;if the rax is lower than 0, it is an error
+    ret                         ;if is 0 or more, returns the rax value
 
 _error:
-    mov rdi, rax                ;save the return value in rbi - it contains errno value
+    mov rdi, rax                ;save the return value in rdi - it contains errno value
     neg rdi                     ;negate the value to make it positive
     call __errno_location       ;get the address of errno in rax
     mov [rax], rdi              ;set the errno to the value in rdi (rax is the *address of errno)
 
-    mov rax, -1         ;set rax to -1 to indicate an error for return.
-    ret                 ;returns -1
+    mov rax, -1                 ;set rax to -1 to indicate an error for return.
+    ret                         ;returns -1

@@ -31,6 +31,8 @@ _loop:
 _return:
     ret
 
+
+
 ; original C code for reference:
 ; size_t ft_strlen(char *str)
 ; {

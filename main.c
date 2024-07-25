@@ -6,7 +6,7 @@
 /*   By: sbenes <sbenes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 13:00:22 by sbenes            #+#    #+#             */
-/*   Updated: 2024/07/22 17:12:40 by sbenes           ###   ########.fr       */
+/*   Updated: 2024/07/25 17:05:49 by sbenes           ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -86,18 +86,19 @@ void    test_ft_write()
 {
     int case_nr = sizeof(test_cases) / sizeof(test_cases[0]);
     int fd = 1;
-    int ret;
+    int ret1, ret2 = 0;
 
-    printf("\n:::::: ft_write ::::::\n\n");
+    printf(BOLD "\n:::::: ft_write ::::::\n\n" RESET);
     
     for (int i = 0; i < case_nr; i++)
     {
-        printf("Test case: [%s]\n", test_cases[i]);
-        ret = ft_write(fd, test_cases[i], ft_strlen(test_cases[i]));
-        printf(" ft_write: \t%d \n", ret);
-        ret = write(fd, test_cases[i], ft_strlen(test_cases[i]));
-        printf(" write: \t%d \n", ret);
-        if (ret != ft_write(fd, test_cases[i], ft_strlen(test_cases[i])))
+        printf(YELLOW "Test case: [%s]" RESET, test_cases[i]);
+        printf("\n");
+        ret1 = ft_write(fd, test_cases[i], ft_strlen(test_cases[i]));
+        printf("ft_write: \t%d \n", ret1);
+        ret2 = write(fd, test_cases[i], ft_strlen(test_cases[i]));
+        printf("write: \t%d \n", ret2);
+        if (ret1 != ret2)
             printf(" Result: " RED "failed\n\n" RESET);
         else
             printf(" Result: " GREEN "OK" RESET "\n\n");
@@ -115,42 +116,42 @@ void    test_ft_write()
     printf("errno: %d\n", errno); */
    
    // bad input test suite:
-    printf("Bad input test suite:\n");
+    printf(RED "Bad input test suite:\n" RESET);
 
     // Test ft_write with bad fd
     errno = 0; // Reset errno before the call
-    ret = ft_write(-1, test_cases[0], ft_strlen(test_cases[0]));
-    printf("ft_write with bad fd (-1): \t%d \n", ret);
+    ret1 = ft_write(-1, test_cases[0], ft_strlen(test_cases[0]));
+    printf("ft_write with bad fd (-1): \t%d \n", ret1);
     printf("errno after ft_write: %d\n", errno);
 
     // Test write with bad fd
     errno = 0; // Reset errno before the call
-    ret = write(-1, test_cases[0], ft_strlen(test_cases[0]));
-    printf("write with bad fd (-1): \t%d \n", ret);
+    ret2 = write(-1, test_cases[0], ft_strlen(test_cases[0]));
+    printf("write with bad fd (-1): \t%d \n", ret2);
     printf("errno after write: %d\n", errno);
 
     // Test ft_write with bad buffer
     errno = 0; // Reset errno before the call
-    ret = ft_write(fd, NULL, ft_strlen(test_cases[0]));
-    printf("\nft_write with bad buffer (NULL): \t%d \n", ret);
+    ret1 = ft_write(fd, NULL, ft_strlen(test_cases[0]));
+    printf("\nft_write with bad buffer (NULL): \t%d \n", ret1);
     printf("errno after ft_write: %d\n", errno);
 
     // Test write with bad buffer
     errno = 0; // Reset errno before the call
-    ret = write(fd, NULL, ft_strlen(test_cases[0]));
-    printf("write with bad buffer (NULL): \t%d \n", ret);
+    ret2 = write(fd, NULL, ft_strlen(test_cases[0]));
+    printf("write with bad buffer (NULL): \t%d \n", ret2);
     printf("errno after write: %d\n", errno);
 
     // Test ft_write with bad count
     errno = 0; // Reset errno before the call
-    ret = ft_write(fd, test_cases[0], -1);
-    printf("\nft_write with bad count (-1): \t%d \n", ret);
+    ret1 = ft_write(fd, test_cases[0], -1);
+    printf("\nft_write with bad count (-1): \t%d \n", ret1);
     printf("errno after ft_write: %d\n", errno);
 
     // Test write with bad count
     errno = 0; // Reset errno before the call
-    ret = write(fd, test_cases[0], -1);
-    printf("write with bad count (-1): \t%d \n", ret);
+    ret2 = write(fd, test_cases[0], -1);
+    printf("write with bad count (-1): \t%d \n", ret2);
     printf("errno after write: %d\n", errno);
 
 }
@@ -187,25 +188,25 @@ void    test_ft_read()
     errno = 0; // Reset errno before the call
     ret = ft_read(-1, buffer, ft_strlen(test_cases[0]));
     printf("ft_read with bad fd (-1): \t%d \n", ret);
-    printf("errno after ft_read: %d\n", errno);
+    printf("errno after ft_read: \t%d\n", errno);
 
     // Test read with bad fd
     errno = 0; // Reset errno before the call
     ret = read(-1, buffer, ft_strlen(test_cases[0]));
     printf("read with bad fd (-1): \t%d \n", ret);
-    printf("errno after read: %d\n", errno);
+    printf("errno after read: \t%d\n", errno);
 
     // Test ft_read with bad count
     errno = 0; //
     ret = ft_read(fd, buffer, -1);
     printf("\nft_read with bad count (-1): \t%d \n", ret);
-    printf("errno after ft_read: %d\n", errno);
+    printf("errno after ft_read: \t%d\n", errno);
     
     // Test read with bad count
     errno = 0; // Reset errno before the call
     ret = read(fd, buffer, -1);
     printf("read with bad count (-1): \t%d \n", ret);
-    printf("errno after read: %d\n", errno); 
+    printf("errno after read: \t%d\n", errno); 
 
 
     printf(GREEN "\nstdin reading test. Enter some content twice: \n" RESET);

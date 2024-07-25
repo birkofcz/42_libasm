@@ -10,11 +10,14 @@
 ;;                                                                            ;;
 ;; ************************************************************************** ;;
 
-;  char *strcpy(char *dest, const char *src);
+; char *strcpy(char *dest, const char *src);
 
 ; register usage:
 ; rdi - char *dest (first param)
 ; rsi - char *src (second param)
+; rcx - counter
+; al - char to copy (al is the first byte (8-bit) portion of 64bits rax register)
+; rax - return value
 
 section .text
 global ft_strcpy
