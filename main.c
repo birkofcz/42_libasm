@@ -6,7 +6,7 @@
 /*   By: sbenes <sbenes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 13:00:22 by sbenes            #+#    #+#             */
-/*   Updated: 2024/07/25 17:05:49 by sbenes           ###   ########.fr       */
+/*   Updated: 2024/07/26 17:23:53 by sbenes           ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -135,12 +135,15 @@ void    test_ft_write()
     ret1 = ft_write(fd, NULL, ft_strlen(test_cases[0]));
     printf("\nft_write with bad buffer (NULL): \t%d \n", ret1);
     printf("errno after ft_write: %d\n", errno);
+    printf("errno of strerror: %s\n", strerror(errno));
 
     // Test write with bad buffer
     errno = 0; // Reset errno before the call
     ret2 = write(fd, NULL, ft_strlen(test_cases[0]));
     printf("write with bad buffer (NULL): \t%d \n", ret2);
     printf("errno after write: %d\n", errno);
+    printf("errno of strerror: %s\n", strerror(errno));
+
 
     // Test ft_write with bad count
     errno = 0; // Reset errno before the call
